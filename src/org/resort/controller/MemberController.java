@@ -16,6 +16,11 @@ public class MemberController {
     @Autowired
     MemberService service;
 
+    /**
+     * 获取全部会员
+     * @param map 存储对象
+     * @return 全部会员
+     */
     @RequestMapping("/getAllMember.html")
     public String getAllMember(Map<String,Object> map) {
         /*Map<String, Object> map = new HashMap<String, Object>();*/
