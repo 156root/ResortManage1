@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.StateDao">
+    <resultMap id="stateMap" type="org.resort.entity.State">
+        <result property="id" column="id"/>
+        <result column="name" property="name"/>
+        <result column="descriptor" property="descriptor"/>
+        <association column="typeid" property="type" select="org.resort.dao.StateTypeDao.getEntityById"/>
+    </resultMap>
+    <select id="getAllEntity" resultMap="stateMap">
+        select id,name,typeId,descriptor from State
+    </select>
+    <select id="getEntityById" resultMap="stateMap">
+        select id,name,typeId,descriptor from State WHERE id=#{id}
+    </select>
+</mapper>

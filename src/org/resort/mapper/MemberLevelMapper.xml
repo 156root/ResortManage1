@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.MemberLevelDao">
+    <resultMap id="memberLevelMap" type="org.resort.entity.MemberLevel">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="price" column="price"/>
+        <result property="discount" column="discount"/>
+    </resultMap>
+    <select id="getAllEntity" resultMap="memberLevelMap">
+        select id,name,price,discount from memberlevel
+    </select>
+    <select id="getEntityById" resultMap="memberLevelMap">
+        select id,name,price,discount from memberlevel where id=#{id}
+    </select>
+</mapper>

@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @Author 郭文虎
+ */
 @RequestMapping("/member")
 @Controller
 public class MemberController {
@@ -17,14 +20,14 @@ public class MemberController {
     MemberService service;
 
     /**
-     * 获取全部会员魂牵梦萦sfsdfdsfd
+     * 获取全部会员
      * @param map 存储对象
      * @return 全部会员
      */
     @RequestMapping("/getAllMember.html")
     public String getAllMember(Map<String,Object> map) {
         /*Map<String, Object> map = new HashMap<String, Object>();*/
-        List<Member> memberList= service.getAllMember();
+        List<Member> memberList= service.getAllEntity();
         for (Member member : memberList) {
             System.out.println("id:"+member.getId());
             System.out.println("account:"+member.getAccount());

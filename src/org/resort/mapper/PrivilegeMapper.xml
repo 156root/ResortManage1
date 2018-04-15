@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.PrivilegeDao">
+    <resultMap id="privilegeMap" type="org.resort.entity.Privilege">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="href" column="href"/>
+        <result property="icon" column="icon"/>
+        <association property="parent" column="parent" select="getParentById"/>
+    </resultMap>
+    <select id="getEntityById" resultMap="privilegeMap">
+        select id,name,href,icon,parent from privilege WHERE id=#{id}
+    </select>
+    <select id="getParentById" resultType="org.resort.entity.Privilege">
+        select id,name,href,icon from privilege WHERE id=#{id}
+    </select>
+    <select id="getAllEntity" resultMap="privilegeMap">
+        select id,name,href,icon,parent from privilege
+    </select>
+</mapper>

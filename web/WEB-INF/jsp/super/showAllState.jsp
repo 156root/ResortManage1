@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: lenovo
   Date: 2018-04-15
-  Time: 14:47
+  Time: 20:04
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -19,9 +19,13 @@
     <%--<link href="/statics/css" rel="stylesheet">--%>
 </head>
 <body>
-<c:forEach items="${member}" var="m">
-    <c:out value="${m.id}"></c:out>
-    <c:out value="${m.account}"></c:out>
+<c:forEach items="${stateList}" var="state">
+    <c:out value="${state.id}"/>
+    <c:out value="${state.name}"/>
+    <c:out value="${state.descriptor}"/>
+    <c:out value="${state.type.id}"/>
+    <c:out value="${state.type.name}"/>
+    <c:out value="${state.type.descriptor}"/>
 </c:forEach>
 
 <script src="/statics/js/jquery-3.2.1.min.js"></script>

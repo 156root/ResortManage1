@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.RoleDao">
+    <resultMap id="roleMap" type="org.resort.entity.Role">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="descriptor" column="descriptor"/>
+    </resultMap>
+    <select id="getEntityById" resultMap="roleMap">
+        select id,name,"descriptor" from role WHERE id=#{id}
+    </select>
+    <select id="getAllEntity" resultMap="roleMap">
+        select id,name,"descriptor" from role
+    </select>
+</mapper>

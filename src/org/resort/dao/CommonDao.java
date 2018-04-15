@@ -17,4 +17,20 @@ public interface CommonDao<E> {
      * @return 对应的对象
      */
     E getEntityById(@Param("id") int id);
+
+    /**
+     * 添加一条数据
+     * @param entity 将要添加的数据
+     * @return 受影响行数
+     */
+    int addEntity(@Param("entity") E entity);
+
+    /**
+     * 根据编号删除一条数据
+     * @param id 将要删除数据的编号
+     * @return 受影响行数
+     */
+    int delEntity(@Param("id") int id);
+
+    List<E> getPartEntityByStateId(@Param("stateId") int stateId);
 }
