@@ -20,7 +20,8 @@ public class MemberController {
     MemberService service;
 
     /**
-     * 获取全部会员
+     * 2018/4/6 8:47
+     * 获取全部会员45454545454545454545454545454545
      * @param map 存储对象
      * @return 全部会员
      */
