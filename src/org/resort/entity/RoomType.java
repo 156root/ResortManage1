@@ -13,10 +13,7 @@ public class RoomType {
      * 房间类型名称
      */
     private String name;
-    /**
-     * 该类型房间当前所使用的数量
-     */
-    private int currentamount;
+
     /**
      * 房间类型描述
      */
@@ -29,7 +26,6 @@ public class RoomType {
         System.out.println("-------------start RoomType-------------");
         System.out.println("id:" + id);
         System.out.println("name:" + name);
-        System.out.println("currentamount:" + currentamount);
         System.out.println("descriptor:" + descriptor);
         System.out.println("-------------end RoomType-------------");
     }
@@ -48,14 +44,6 @@ public class RoomType {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getCurrentamount() {
-        return currentamount;
-    }
-
-    public void setCurrentamount(int currentamount) {
-        this.currentamount = currentamount;
     }
 
     public String getDescriptor() {

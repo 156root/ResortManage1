@@ -19,15 +19,30 @@ public class Room {
     private RoomType type;
 
     /**
+     * 状态
+     */
+    private State state;
+
+    /**
      * 显示所有数据，用于开发时调试使用
      */
     public void show() {
         System.out.println("-------------start Room-------------");
         System.out.println("id:" + id);
         System.out.println("name:" + name);
+        state.show();
         type.show();
         System.out.println("-------------end Room-------------");
     }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
     public int getId() {
         return id;
     }

@@ -6,7 +6,9 @@ import java.util.List;
 
 /**
  * @Author 郭文虎
+ *
+ * 会员服务
  */
-public interface MemberService extends CommonService<Member>{
+public interface MemberService{
 
 }

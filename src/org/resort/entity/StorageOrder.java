@@ -41,6 +41,11 @@ public class StorageOrder {
     private Date enddate;
 
     /**
+     * 状态
+     */
+    private State state;
+
+    /**
      * 显示所有数据，用于开发时调试使用
      */
     public void show() {
@@ -48,6 +53,9 @@ public class StorageOrder {
         System.out.println("id:" + id);
         System.out.println("startdate:" + startdate);
         System.out.println("enddate:" + enddate);
+        if (state != null) {
+            state.show();
+        }
         if (receiver != null) {
             receiver.show();
         }
@@ -58,6 +66,14 @@ public class StorageOrder {
             indepartment.show();
         }
         System.out.println("-------------end StorageOrder-------------");
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 
     public int getId() {

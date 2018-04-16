@@ -45,6 +45,10 @@ public class Employee {
      * 密码
      */
     private String password;
+    /**
+     * 状态
+     */
+    private State state;
 
     /**
      * 显示所有数据，用于开发时调试使用
@@ -59,9 +63,18 @@ public class Employee {
         System.out.println("phone:" + phone);
         System.out.println("account:" + account);
         System.out.println("password:" + password);
+        state.show();
         role.show();
         inDepartment.show();
         System.out.println("-------------end Employee-------------");
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 
     public InDepartment getInDepartment() {

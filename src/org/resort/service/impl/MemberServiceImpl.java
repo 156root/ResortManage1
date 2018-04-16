@@ -9,19 +9,16 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @Author 郭文虎
+ *
+ * 会员服务
+ */
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
 
     @Autowired
-    MemberDao dao;
+    MemberDao memberDao;
 
-    @Override
-    public List<Member> getAllEntity() {
-        return dao.getAllEntity();
-    }
 
-    @Override
-    public Member getEntityById(int id) {
-        return dao.getEntityById(id);
-    }
 }

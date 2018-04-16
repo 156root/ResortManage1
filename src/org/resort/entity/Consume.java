@@ -43,6 +43,10 @@ public class Consume {
      * 客房订单
      */
     private RoomOrder roomorder;
+    /**
+     * 会员充值
+     */
+    private MemberRecharge memberrecharge;
 
     /**
      * 显示所有数据，用于开发时调试使用
@@ -65,7 +69,18 @@ public class Consume {
         if (roomorder != null) {
             roomorder.show();
         }
+        if (memberrecharge != null) {
+            memberrecharge.show();
+        }
         System.out.println("-------------end Consume-------------");
+    }
+
+    public MemberRecharge getMemberrecharge() {
+        return memberrecharge;
+    }
+
+    public void setMemberrecharge(MemberRecharge memberrecharge) {
+        this.memberrecharge = memberrecharge;
     }
 
     public int getId() {
