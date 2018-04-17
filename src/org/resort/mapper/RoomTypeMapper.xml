@@ -4,13 +4,19 @@
     <resultMap id="roomTypeMap" type="org.resort.entity.RoomType">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
-        <result property="currentamount" column="currentamount"/>
         <result property="descriptor" column="descriptor"/>
     </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from roomtype where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into roomtype(name,"descriptor")
+        VALUES (#{entity.name},#{entity.descriptor})
+    </insert>
     <select id="getEntityById" resultMap="roomTypeMap">
-        select id,name,currentamount,descriptor from roomtype WHERE id=#{id}
+        select id,name,descriptor from roomtype WHERE id=#{id}
     </select>
     <select id="getAllEntity" resultMap="roomTypeMap">
-        select id,name,currentamount,descriptor from roomtype
+        select id,name,descriptor from roomtype
     </select>
 </mapper>

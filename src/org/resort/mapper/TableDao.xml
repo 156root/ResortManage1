@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.TableDao">
+    <resultMap id="tableMap" type="org.resort.entity.Table">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <association property="type" column="typeId" select="org.resort.dao.TableTypeDao.getEntityById"/>
+        <association property="state" column="stateid" select="org.resort.dao.StateDao.getEntityById"/>
+    </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from table where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into table(name,price,unitid,typeid,stateid)
+        VALUES (#{entity.name},#{entity.price},#{entity.unit.id},#{entity.type.id},#{entity.state.id})
+    </insert>
+    <select id="getAllEntity" resultMap="tableMap">
+        select id,name,typeid,stateid from table
+    </select>
+    <select id="getEntityById" resultMap="tableMap">
+        select id,name,typeid,stateid from table WHERE id=#{id}
+    </select>
+    <select id="getPartEntityByStateId" resultMap="tableMap">
+        SELECT id,name,typeid,stateid from table WHERE stateid=#{stateId}
+    </select>
+    <select id="getPartEntityByTypeId" resultMap="tableMap">
+        SELECT id,name,typeid,stateid from table WHERE typeid=#{typeId}
+    </select>
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.GoodsTypeDao">
+    <resultMap id="goodsTypeMap" type="org.resort.entity.GoodsType">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="descriptor" column="descriptor"/>
+        <association property="inDepartment" column="indepartmentid"
+                     select="org.resort.dao.InDepartmentDao.getEntityById"/>
+    </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from goodstype where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into goodstype(name,"descriptor",indepartmentid)
+        VALUES (#{entity.name},#{entity.descriptor},#{entity.indepartment.id})
+    </insert>
+    <select id="getAllEntity" resultMap="goodsTypeMap">
+        select id,name,descriptor from goodstype
+    </select>
+    <select id="getEntityById" resultMap="goodsTypeMap">
+        select id,name,descriptor from goodstype WHERE id=#{id}
+    </select>
+</mapper>

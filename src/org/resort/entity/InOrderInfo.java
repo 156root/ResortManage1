@@ -13,7 +13,7 @@ public class InOrderInfo {
     /**
      * 所属的仓库订单编号
      */
-    private StorageOrder outorder;
+    private StorageOrder storageorder;
     /**
      * 购买的商品名称
      */
@@ -41,7 +41,7 @@ public class InOrderInfo {
         System.out.println("price:" + price);
         System.out.println("quantity:"+quantity);
         unit.show();
-        outorder.show();
+        storageorder.show();
         System.out.println("-------------end InOrderInfo-------------");
     }
     public int getId() {
@@ -52,12 +52,12 @@ public class InOrderInfo {
         this.id = id;
     }
 
-    public StorageOrder getOutorder() {
-        return outorder;
+    public StorageOrder getStorageorder() {
+        return storageorder;
     }
 
-    public void setOutorder(StorageOrder outorder) {
-        this.outorder = outorder;
+    public void setStorageorder(StorageOrder storageorder) {
+        this.storageorder = storageorder;
     }
 
     public String getGoodsname() {

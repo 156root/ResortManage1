@@ -7,10 +7,20 @@
         <result column="descriptor" property="descriptor"/>
         <association column="typeid" property="type" select="org.resort.dao.StateTypeDao.getEntityById"/>
     </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from state where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into state(name,"descriptor",typeId)
+        VALUES (#{entity.name},#{entity.descriptor},#{entity.typeid})
+    </insert>
     <select id="getAllEntity" resultMap="stateMap">
         select id,name,typeId,descriptor from State
     </select>
     <select id="getEntityById" resultMap="stateMap">
         select id,name,typeId,descriptor from State WHERE id=#{id}
+    </select>
+    <select id="getPartEntityByTypeId" resultMap="stateMap">
+        select id,name,typeId,descriptor from State WHERE typeid=#{typeId}
     </select>
 </mapper>

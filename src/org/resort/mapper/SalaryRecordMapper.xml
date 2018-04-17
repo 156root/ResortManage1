@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.SalaryRecordDao">
+    <resultMap id="salaryRecordMap" type="org.resort.entity.SalaryRecord">
+        <result property="id" column="id"/>
+        <result property="date" column="date"/>
+        <association property="employee" column="employeeid" select="org.resort.dao.EmployeeDao.getEntityById"/>
+    </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from salaryrecord where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into salaryrecord(date,employeeid)
+        VALUES (#{entity.date},#{entity.employee.id})
+    </insert>
+    <select id="getAllEntity" resultMap="salaryRecordMap">
+        select id,date,employeeid from salaryrecord
+    </select>
+    <select id="getEntityById" resultMap="salaryRecordMap">
+        select id,date,employeeid from salaryrecord WHERE id=#{id}
+    </select>
+</mapper>

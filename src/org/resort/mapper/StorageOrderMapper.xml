@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.StorageOrderDao">
+    <resultMap id="storageOrderMap" type="org.resort.entity.StorageOrder">
+        <result property="id" column="id"/>
+        <result property="startdate" column="startdate"/>
+        <result property="account" column="account"/>
+        <result property="enddate" column="enddate"/>
+        <association property="outdepartment" column="outdepartmentid" select="org.resort.dao.OutDepartmentDao.getEntityById"/>
+        <association property="indepartment" column="indepartmentId" select="org.resort.dao.InDepartmentDao.getEntityById"/>
+        <association property="receiver" column="receiverId" select="org.resort.dao.EmployeeDao.getEntityById"/>
+        <association property="state" column="stateid" select="org.resort.dao.StateDao.getEntityById"/>
+    </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from storageorder where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into storageorder(startdate,account,enddate,outdepartmentid,indepartmentId,receiverId,stateid)
+        VALUES (#{entity.startdate},#{entity.account},#{entity.enddate},#{entity.outdepartment.id},#{entity.indepartment.id},#{entity.receiver.id},#{entity.state.id})
+    </insert>
+    <select id="getAllEntity" resultMap="storageOrderMap">
+        select id,startdate,account,enddate,outdepartmentid,indepartmentId,receiverId,stateid from storageorder
+    </select>
+    <select id="getEntityById" resultMap="storageOrderMap">
+        select id,startdate,account,enddate,outdepartmentid,indepartmentId,receiverId,stateid from storageorder WHERE id=#{id}
+    </select>
+    <select id="getPartEntityByStateId" resultMap="storageOrderMap">
+        SELECT id,startdate,account,enddate,outdepartmentid,indepartmentId,receiverId,stateid from storageorder WHERE stateid=#{stateId}
+    </select>
+    <select id="getPartEntityByTypeId" resultMap="storageOrderMap">
+        SELECT id,startdate,account,enddate,outdepartmentid,indepartmentId,receiverId,stateid from storageorder WHERE typeid=#{typeId}
+    </select>
+</mapper>

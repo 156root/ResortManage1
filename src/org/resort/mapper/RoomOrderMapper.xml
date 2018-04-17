@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.RoomOrderDao">
+    <resultMap id="roomOrderMap" type="org.resort.entity.RoomOrder">
+        <result property="id" column="id"/>
+        <result property="startdate" column="startdate"/>
+        <result property="enddate" column="enddate"/>
+        <result property="day" column="day"/>
+        <association property="member" column="memberid" select="org.resort.dao.MemberDao.getEntityById"/>
+        <association property="employee" column="employeeid" select="org.resort.dao.EmployeeDao.getEntityById"/>
+        <association property="state" column="stateid" select="org.resort.dao.StateDao.getEntityById"/>
+    </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from roomorder where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into roomorder(startdate,employeeid,stateid,enddate,day)
+        VALUES (#{entity.startdate},#{entity.employee.id},#{entity.state.id},#{entity.enddate},#{entity.day})
+    </insert>
+    <select id="getAllEntity" resultMap="roomOrderMap">
+        select id,startdate,employeeid,stateid,enddate,day,enddate from roomorder
+    </select>
+    <select id="getEntityById" resultMap="roomOrderMap">
+        select id,startdate,employeeid,stateid,enddate,day,enddate from roomorder WHERE id=#{id}
+    </select>
+    <select id="getPartEntityByStateId" resultMap="roomOrderMap">
+        SELECT id,startdate,employeeid,stateid,enddate,day,enddate from roomorder WHERE stateid=#{stateId}
+    </select>
+</mapper>

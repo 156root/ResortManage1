@@ -6,6 +6,13 @@
         <result property="name" column="name"/>
         <result property="descriptor" column="descriptor"/>
     </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from indepartment where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into indepartment(name,"descriptor")
+        VALUES (#{entity.name},#{entity.descriptor})
+    </insert>
     <select id="getEntityById" resultMap="inDepartmentMap">
     SELECT id,name,descriptor from indepartment where id=#{id}
     </select>

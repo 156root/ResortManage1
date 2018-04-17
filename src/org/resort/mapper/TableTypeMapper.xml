@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.resort.dao.StateTypeDao">
-    <resultMap id="stateTypeMap" type="org.resort.entity.StateType">
+<mapper namespace="org.resort.dao.TableTypeDao">
+    <resultMap id="tableTypeMap" type="org.resort.entity.TableType">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="descriptor" column="descriptor"/>
     </resultMap>
     <delete id="delOneEntityById">
-        DELETE from statetype where id=#{id}
+        DELETE from tabletype where id=#{id}
     </delete>
     <insert id="addOneEntity">
-        INSERT into statetype(name,"descriptor")
+        INSERT into tabletype(name,"descriptor")
         VALUES (#{entity.name},#{entity.descriptor})
     </insert>
-    <select id="getAllEntity" resultMap="stateTypeMap">
-        select id,name,descriptor from StateType
+    <select id="getAllEntity" resultMap="tableTypeMap">
+        select id,name,descriptor from TableType
     </select>
-    <select id="getEntityById" resultMap="stateTypeMap">
-        select id,name,descriptor from StateType WHERE id=#{id}
+    <select id="getEntityById" resultMap="tableTypeMap">
+        select id,name,descriptor from TableType WHERE id=#{id}
     </select>
 </mapper>

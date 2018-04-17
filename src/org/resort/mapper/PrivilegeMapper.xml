@@ -8,6 +8,13 @@
         <result property="icon" column="icon"/>
         <association property="parent" column="parent" select="getParentById"/>
     </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from privilege where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into privilege(name,href,icon,parent)
+        VALUES (#{entity.name},#{entity.href},#{entity.icon},#{entity.parent})
+    </insert>
     <select id="getEntityById" resultMap="privilegeMap">
         select id,name,href,icon,parent from privilege WHERE id=#{id}
     </select>

@@ -13,7 +13,7 @@ public class OutOrderInfo {
     /**
      * 出库商品
      */
-    private StorageGoods inventorygoods;
+    private StorageGoods storagegoods;
     /**
      * 出库订单
      */
@@ -34,7 +34,7 @@ public class OutOrderInfo {
         System.out.println("-------------start OutOrderInfo-------------");
         System.out.println("id:" + id);
         System.out.println("quantity:" + quantity);
-        inventorygoods.show();
+        storagegoods.show();
         unit.show();
         System.out.println("-------------end OutOrderInfo-------------");
     }
@@ -47,12 +47,12 @@ public class OutOrderInfo {
         this.id = id;
     }
 
-    public StorageGoods getInventorygoods() {
-        return inventorygoods;
+    public StorageGoods getStoragegoods() {
+        return storagegoods;
     }
 
-    public void setInventorygoods(StorageGoods inventorygoods) {
-        this.inventorygoods = inventorygoods;
+    public void setStoragegoods(StorageGoods storagegoods) {
+        this.storagegoods = storagegoods;
     }
 
     public StorageOrder getStorageorder() {

@@ -6,6 +6,13 @@
         <result property="name" column="name"/>
         <result property="descriptor" column="descriptor"/>
     </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from consumetype where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into consumetype(name,"descriptor")
+        VALUES (#{entity.name},#{entity.descriptor})
+    </insert>
     <select id="getEntityById" resultMap="consumeTypeMap">
         select id,name,"descriptor" from consumetype WHERE id=#{id}
     </select>

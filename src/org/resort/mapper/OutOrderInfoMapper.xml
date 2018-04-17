@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.OutOrderInfoDao">
+    <resultMap id="outOrderInfoMap" type="org.resort.entity.OutOrderInfo">
+        <result property="id" column="id"/>
+        <result property="quantity" column="quantity"/>
+        <association property="unit" column="unitid" select="org.resort.dao.UnitDao.getEntityById"/>
+        <association property="storageorder" column="storageorderid" select="org.resort.dao.StorageOrderDao.getEntityById"/>
+        <association property="storagegoods" column="storagegoodsid" select="org.resort.dao.StorageGoodsDao.getEntityById"/>
+    </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from outorderinfo where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into outorderinfo(quantity,unitid,storageorderid,storagegoodsid)
+        VALUES (#{entity.quantity},#{entity.unit.id},#{entity.storageorder.id},#{entity.storagegoods.id})
+    </insert>
+    <select id="getAllEntity" resultMap="outOrderInfoMap">
+        select id,quantity,unitid,storageorderid,storagegoodsid from outorderinfo
+    </select>
+    <select id="getEntityById" resultMap="outOrderInfoMap">
+        select id,quantity,unitid,storageorderid,storagegoodsid from outorderinfo WHERE id=#{id}
+    </select>
+</mapper>

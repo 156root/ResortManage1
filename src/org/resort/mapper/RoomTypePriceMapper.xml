@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.RoomTypePriceDao">
+    <resultMap id="roomTypeMap" type="org.resort.entity.RoomTypePrice">
+        <result property="id" column="id"/>
+        <result property="day" column="day"/>
+        <result property="price" column="price"/>
+        <association property="type" column="roomtypeid" select="org.resort.dao.RoomTypeDao.getEntityById"/>
+    </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from roomtypeprice where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into roomtypeprice(day,price,roomtypeid)
+        VALUES (#{entity.day},#{entity.price},#{entity.roomtype.id})
+    </insert>
+    <select id="getAllEntity" resultMap="roomTypeMap">
+        select id,day,price,roomtypeid from roomtypeprice
+    </select>
+    <select id="getEntityById" resultMap="roomTypeMap">
+        select id,day,price,roomtypeid from roomtypeprice WHERE id=#{id}
+    </select>
+    <select id="getPartEntityByTypeId" resultMap="roomTypeMap">
+        SELECT id,day,price,roomtypeid from roomtypeprice WHERE typeid=#{typeId}
+    </select>
+</mapper>

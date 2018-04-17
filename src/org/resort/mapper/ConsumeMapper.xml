@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.ConsumeDao">
+    <resultMap id="consumeMap" type="org.resort.entity.Consume">
+        <result property="id" column="id"/>
+        <result property="date" column="date"/>
+        <association property="type" column="typeid" select="org.resort.dao.ConsumeTypeDao.getEntityById"/>
+        <association property="employee" column="employeeid" select="org.resort.dao.EmployeeDao.getEntityById"/>
+        <association property="storageorder" column="storageorderid" select="org.resort.dao.StorageOrderDao.getEntityById"/>
+        <association property="dininghallorder" column="dininghallorderid" select="org.resort.dao.DiningHallOrderDao.getEntityById"/>
+        <association property="salaryrecord" column="salaryrecordid" select="org.resort.dao.SalaryRecordDao.getEntityById"/>
+        <association property="roomorder" column="roomorderid" select="org.resort.dao.RoomOrderDao.getEntityById"/>
+        <association property="memberrecharge" column="memberrechargeid" select="org.resort.dao.MemberRechargeDao.getEntityById"/>
+    </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from consume where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into consume(name,date,typeid,employeeid,storageorderid,dininghallorderid,salaryrecordid,roomorderid,memberrechargeid)
+        VALUES (#{entity.name},#{entity.date},#{entity.type.id},#{entity.employee.id},#{entity.storageorder.id},#{entity.dininghallorder.id},#{entity.salaryrecord.id},#{entity.roomorder.id},#{entity.memberrecharge.id})
+    </insert>
+    <select id="getAllEntity" resultMap="consumeMap">
+        select id,name,date,typeid,employeeid,storageorderid,dininghallorderid,salaryrecordid,roomorderid,memberrechargeid from consume
+    </select>
+    <select id="getEntityById" resultMap="consumeMap">
+        select id,name,date,typeid,employeeid,storageorderid,dininghallorderid,salaryrecordid,roomorderid,memberrechargeid from consume WHERE id=#{id}
+    </select>
+    <select id="getPartEntityByTypeId" resultMap="consumeMap">
+        SELECT id,name,date,typeid,employeeid,storageorderid,dininghallorderid,salaryrecordid,roomorderid,memberrechargeid from consume WHERE typeid=#{typeId}
+    </select>
+</mapper>

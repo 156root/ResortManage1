@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.MemberRechargeDao">
+    <resultMap id="memberRechargeMap" type="org.resort.entity.MemberRecharge">
+        <result property="id" column="id"/>
+        <result property="recharge" column="recharge"/>
+        <result property="date" column="date"/>
+        <association property="member" column="memberid" select="org.resort.dao.MemberDao.getEntityById"/>
+    </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from memberrecharge where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into memberrecharge(recharge,date,memberid)
+        VALUES (#{entity.recharge},#{entity.date},#{entity.member.id})
+    </insert>
+    <select id="getAllEntity" resultMap="memberRechargeMap">
+        select id,recharge,date,memberid from memberrecharge
+    </select>
+    <select id="getEntityById" resultMap="memberRechargeMap">
+        select id,recharge,date,memberid from memberrecharge WHERE id=#{id}
+    </select>
+</mapper>

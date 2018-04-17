@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.RoomOrderInfoDao">
+    <resultMap id="roomOrderInfoMap" type="org.resort.entity.RoomOrderInfo">
+        <result property="id" column="id"/>
+        <association property="room" column="roomid" select="org.resort.dao.RoomDao.getEntityById"/>
+        <association property="order" column="roomorderid" select="org.resort.dao.RoomOrderDao.getEntityById"/>
+    </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from roomorderinfo where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into roomorderinfo(roomid, roomorderid)
+        VALUES (#{entity.room.id},#{entity.roomorder.id})
+    </insert>
+    <select id="getAllEntity" resultMap="roomOrderInfoMap">
+        select id,roomid, roomorderid from roomorderinfo
+    </select>
+    <select id="getEntityById" resultMap="roomOrderInfoMap">
+        select id,roomid, roomorderid from roomorderinfo WHERE id=#{id}
+    </select>
+</mapper>

@@ -12,9 +12,23 @@
         <result property="password" column="password"/>
         <result property="phone" column="phone"/>
         <result property="startdate" column="startdate"/>
-
+        <association property="memberlevel" column="levelid" select="org.resort.dao.MemberLevelDao.getEntityById"/>
+        <association property="state" column="stateid" select="org.resort.dao.StateDao.getEntityById"/>
     </resultMap>
     <select id="getAllEntity" resultMap="memberMap">
         select * from member
+    </select>
+    <delete id="delOneEntityById">
+        DELETE from member where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into member(name,identitycard,levelid,account,balance,stateId,startDate,phone,password)
+        VALUES (#{entity.name},#{entity.identitycard},#{entity.level.id},#{entity.account},#{entity.balance},#{entity.state.id},#{entity.startdate},#{entity.phone},#{entity.password})
+    </insert>
+    <select id="getEntityById" resultMap="memberMap">
+        select id,name,identitycard,levelid,account,balance,stateId,startDate,phone,password from member WHERE id=#{id}
+    </select>
+    <select id="getPartEntityByStateId" resultMap="memberMap">
+        select id,name,identitycard,levelid,account,balance,stateId,startDate,phone,password from member WHERE stateId=#{stateId}
     </select>
 </mapper>

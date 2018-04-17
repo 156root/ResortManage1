@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.DiningHallOrderDao">
+    <resultMap id="diningHallOrderMap" type="org.resort.entity.DiningHallOrder">
+        <result property="id" column="id"/>
+        <result property="date" column="date"/>
+        <association property="table" column="tableid" select="org.resort.dao.TableDao.getEntityById"/>
+        <association property="employee" column="employeeid" select="org.resort.dao.EmployeeDao.getEntityById"/>
+        <association property="member" column="memberid" select="org.resort.dao.MemberDao.getEntityById"/>
+        <association property="state" column="stateId" select="org.resort.dao.StateDao.getEntityById"/>
+    </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from dininghallorder where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into dininghallorder(date,tableid,employeeid,stateId)
+        VALUES (#{entity.date},#{entity.table.id},#{entity.employee.id},#{entity.state.id})
+    </insert>
+    <select id="getAllEntity" resultMap="diningHallOrderMap">
+        select id,date,tableid,employeeid,stateId from dininghallorder
+    </select>
+    <select id="getEntityById" resultMap="diningHallOrderMap">
+        select id,date,tableid,employeeid,stateId from dininghallorder WHERE id=#{id}
+    </select>
+    <select id="getPartEntityByStateId" resultMap="diningHallOrderMap">
+        SELECT id,date,tableid,employeeid,stateId from dininghallorder WHERE stateid=#{stateId}
+    </select>
+
+</mapper>

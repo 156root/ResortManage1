@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.RolePrivilegeDao">
+    <resultMap id="rolePrivilegeMap" type="org.resort.entity.RolePrivilege">
+        <result property="id" column="id"/>
+        <association property="role" column="roleid" select="org.resort.dao.RoleDao.getEntityById"/>
+        <association property="privilege" column="privilegeid" select="org.resort.dao.PrivilegeDao.getEntityById"/>
+    </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from roleprivilege where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into roleprivilege(roleid,privilegeid)
+        VALUES (#{entity.roleid},#{entity.privilegeid})
+    </insert>
+    <select id="getAllEntity" resultMap="rolePrivilegeMap">
+        select id,roleid,privilegeid from roleprivilege
+    </select>
+    <select id="getEntityById" resultMap="rolePrivilegeMap">
+        select id,roleid,privilegeid from roleprivilege WHERE id=#{id}
+    </select>
+</mapper>

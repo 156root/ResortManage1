@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.EmployeeDao">
+    <resultMap id="employeeMap" type="org.resort.entity.Employee">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="salary" column="salary"/>
+        <result property="sex" column="sex"/>
+        <result property="identitycard" column="identitycard"/>
+        <result property="phone" column="phone"/>
+        <result property="password" column="password"/>
+        <association property="role" column="roleId" select="org.resort.dao.RoleDao.getEntityById"/>
+        <association property="department" column="departmentId" select="org.resort.dao.InDepartmentDao.getEntityById"/>
+        <association property="state" column="stateId" select="org.resort.dao.StateDao.getEntityById"/>
+    </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from employee where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into employee(name,roleId,departmentid,salary,sex,identityCard,phone,account,password,stateid)
+        VALUES (#{entity.name},#{entity.role.id},#{entity.department.id},#{entity.salary},#{entity.sex},#{entity.identitycard},#{entity.phone},#{entity.account},#{entity.password},#{entity.state.id})
+    </insert>
+    <select id="getAllEntity" resultMap="employeeMap">
+        select id,name,roleId,departmentid,salary,sex,identityCard,phone,account,password,stateid from employee
+    </select>
+    <select id="getEntityById" resultMap="employeeMap">
+        select id,name,roleId,departmentid,salary,sex,identityCard,phone,account,password,stateid from employee WHERE id=#{id}
+    </select>
+    <select id="getPartEntityByStateId" resultMap="employeeMap">
+        SELECT id,name,roleId,departmentid,salary,sex,identityCard,phone,account,password,stateid from employee WHERE stateid=#{stateId}
+    </select>
+</mapper>

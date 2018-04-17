@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.InOrderInfoDao">
+    <resultMap id="inOrderInfoMap" type="org.resort.entity.InOrderInfo">
+        <result property="id" column="id"/>
+        <result property="goodsname" column="goodsname"/>
+        <result property="price" column="price"/>
+        <result property="quantity" column="quantity"/>
+        <association property="unit" column="unitid" select="org.resort.dao.UnitDao.getEntityById"/>
+        <association property="storageorder" column="storageorderid" select="org.resort.dao.StorageOrderDao.getEntityById"/>
+    </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from inorderinfo where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into inorderinfo(goodsname,price,quantity,unitid,storageid)
+        VALUES (#{entity.goodsname},#{entity.price},#{entity.quantity},#{entity.unit.id},#{storage.id})
+    </insert>
+    <select id="getAllEntity" resultMap="inOrderInfoMap">
+        select id,goodsname,price,quantity,unitid,storageid from inorderinfo
+    </select>
+    <select id="getEntityById" resultMap="inOrderInfoMap">
+        select id,goodsname,price,quantity,unitid,storageid from inorderinfo WHERE id=#{id}
+    </select>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.DiningHallOrderInfoDao">
+    <resultMap id="diningHallOrderInfoMap" type="org.resort.entity.DiningHallOrderInfo">
+        <result property="id" column="id"/>
+        <association property="goods" column="dininghallgoodsid" select="org.resort.dao.DiningHallGoodsDao.getEntityById"/>
+        <association property="order" column="dininghallorderid" select="org.resort.dao.DiningHallOrderDao.getEntityById"/>
+    </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from dininghallorderinfo where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into dininghallorderinfo(dininghallgoodsid,dininghallorderid)
+        VALUES (#{entity.dininghallorder.id},#{entity.dininghallgoods.id})
+    </insert>
+    <select id="getAllEntity" resultMap="diningHallOrderInfoMap">
+        select id,dininghallgoodsid,dininghallorderid from dininghallorderinfo
+    </select>
+    <select id="getEntityById" resultMap="diningHallOrderInfoMap">
+        select id,dininghallgoodsid,dininghallorderid from dininghallorderinfo WHERE id=#{id}
+    </select>
+</mapper>

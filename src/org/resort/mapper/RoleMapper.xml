@@ -6,6 +6,13 @@
         <result property="name" column="name"/>
         <result property="descriptor" column="descriptor"/>
     </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from role where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into role(name,"descriptor")
+        VALUES (#{entity.name},#{entity.descriptor})
+    </insert>
     <select id="getEntityById" resultMap="roleMap">
         select id,name,"descriptor" from role WHERE id=#{id}
     </select>

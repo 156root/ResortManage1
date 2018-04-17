@@ -20,7 +20,7 @@ public class Employee {
     /**
      * 员工所在部门
      */
-    private InDepartment inDepartment;
+    private InDepartment department;
     /**
      * 员工工资
      */
@@ -65,7 +65,7 @@ public class Employee {
         System.out.println("password:" + password);
         state.show();
         role.show();
-        inDepartment.show();
+        department.show();
         System.out.println("-------------end Employee-------------");
     }
 
@@ -77,12 +77,12 @@ public class Employee {
         this.state = state;
     }
 
-    public InDepartment getInDepartment() {
-        return inDepartment;
+    public InDepartment getDepartment() {
+        return department;
     }
 
-    public void setInDepartment(InDepartment inDepartment) {
-        this.inDepartment = inDepartment;
+    public void setDepartment(InDepartment department) {
+        this.department = department;
     }
 
     public String getPassword() {

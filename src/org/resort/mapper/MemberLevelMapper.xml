@@ -7,6 +7,13 @@
         <result property="price" column="price"/>
         <result property="discount" column="discount"/>
     </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from memberlevel where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into memberlevel(name,price,discount)
+        VALUES (#{entity.name},#{entity.price},#{entity.discount})
+    </insert>
     <select id="getAllEntity" resultMap="memberLevelMap">
         select id,name,price,discount from memberlevel
     </select>

@@ -13,7 +13,7 @@ public class SalaryRecordInfo {
     /**
      * 工资领取记录
      */
-    private SalaryRecord salarytecord;
+    private SalaryRecord salaryrecord;
     /**
      * 描述
      */
@@ -31,7 +31,7 @@ public class SalaryRecordInfo {
         System.out.println("id:" + id);
         System.out.println("descriptor:" + descriptor);
         System.out.println("price:"+price);
-        salarytecord.show();
+        salaryrecord.show();
         System.out.println("-------------end SalaryRecordInfo-------------");
     }
     public int getId() {
@@ -42,12 +42,12 @@ public class SalaryRecordInfo {
         this.id = id;
     }
 
-    public SalaryRecord getSalarytecord() {
-        return salarytecord;
+    public SalaryRecord getSalaryrecord() {
+        return salaryrecord;
     }
 
-    public void setSalarytecord(SalaryRecord salarytecord) {
-        this.salarytecord = salarytecord;
+    public void setSalaryrecord(SalaryRecord salaryrecord) {
+        this.salaryrecord = salaryrecord;
     }
 
     public String getDescriptor() {

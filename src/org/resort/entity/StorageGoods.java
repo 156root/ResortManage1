@@ -27,6 +27,11 @@ public class StorageGoods {
     private GoodsType type;
 
     /**
+     * 状态
+     */
+    private State state;
+
+    /**
      * 显示所有数据，用于开发时调试使用
      */
     public void show() {
@@ -34,9 +39,18 @@ public class StorageGoods {
         System.out.println("id:" + id);
         System.out.println("name:" + name);
         System.out.println("quantity:" + quantity);
+        state.show();
         unit.show();
         type.show();
         System.out.println("-------------end StorageGoods-------------");
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 
     public int getId() {

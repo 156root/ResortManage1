@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.OutDepartmentDao">
+    <resultMap id="outDepartmentMap" type="org.resort.entity.OutDepartment">
+        <result property="id" column="id"/>
+        <result property="storename" column="storename"/>
+        <result property="phone" column="phone"/>
+        <result property="contactperson" column="contactperson"/>
+        <result property="address" column="address"/>
+    </resultMap>
+    <delete id="delOneEntityById">
+        DELETE from outdepartment where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into outdepartment(storename, phone, contactperson, address)
+        VALUES (#{entity.storename},#{entity.phone},#{entity.contactperson},#{entity.address})
+    </insert>
+    <select id="getAllEntity" resultMap="outDepartmentMap">
+        select id,storename,phone,contactperson,address from OutDepartment
+    </select>
+    <select id="getEntityById" resultMap="outDepartmentMap">
+        select id,storename,phone,contactperson,address from OutDepartment WHERE id=#{id}
+    </select>
+</mapper>

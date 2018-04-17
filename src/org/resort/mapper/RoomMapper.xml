@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.resort.dao.RoomDao">
+<resultMap id="roomMap" type="org.resort.entity.Room">
+    <result property="id" column="id"/>
+    <result property="name" column="name"/>
+    <association property="type" column="typeid" select="org.resort.dao.RoomTypeDao.getEntityById"/>
+    <association property="state" column="stateid" select="org.resort.dao.StateDao.getEntityById"/>
+</resultMap>
+    <delete id="delOneEntityById">
+        DELETE from room where id=#{id}
+    </delete>
+    <insert id="addOneEntity">
+        INSERT into room(name,typeid,stateid)
+        VALUES (#{entity.name},#{entity.typeid},#{entity.stateid})
+    </insert>
+    <select id="getAllEntity" resultMap="roomMap">
+        select name,typeid,stateid  from room
+    </select>
+    <select id="getEntityById" resultMap="roomMap">
+        select id,name,typeid,stateid from room WHERE id=#{id}
+    </select>
+    <select id="getPartEntityByStateId" resultMap="roomMap">
+        select id,name,typeid,stateid from room WHERE stateid=#{stateId}
+    </select>
+    <select id="getPartEntityByTypeId" resultMap="roomMap">
+        select id,name,typeid,stateid from room WHERE typeid=#{typeId}
+    </select>
+</mapper>
